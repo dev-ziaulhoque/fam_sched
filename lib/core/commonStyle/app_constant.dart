@@ -11,4 +11,6 @@ class AppConstant {
   static const String refreshToken = 'refreshToken';
   static const String forgotToken = 'forgotToken';
   static const String myId = 'MyId';
+
+  static const String otpVerifyToken = 'otpToken';
 }

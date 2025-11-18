@@ -4,13 +4,16 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart'; // ✅ Add for Lato font
 import 'package:gt_tbb/view/splashView/splashView.dart';
 
 import 'core/network/base_client.dart';
 import 'core/network/end_point.dart';
+import 'core/utils/App_loader.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -24,7 +27,11 @@ class MyHttpOverrides extends HttpOverrides {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Force portrait orientation
+  /*=======init get storage============================*/
+  await GetStorage.init();
+
+
+  /// Force portrait orientation
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -41,6 +48,9 @@ Future<void> main() async {
     connectTimeout: Duration(seconds: 60),
     receiveTimeout: Duration(seconds: 60),
   );
+
+  /// EasyLoading initialize
+  AppLoader.configure();
 
   // Run the app
   runApp(MyApp());
@@ -59,6 +69,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'GT TBB',
           debugShowCheckedModeBanner: false,
+          builder: EasyLoading.init(),
           fallbackLocale: const Locale('en', 'US'),
 
           // ✅ Default white (light) theme

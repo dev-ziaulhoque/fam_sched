@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
 import 'package:gt_tbb/core/commonStyle/custom_toast.dart';
 import 'package:gt_tbb/core/services/auth_services.dart';
+import 'package:gt_tbb/core/utils/App_loader.dart';
 
+import '../../../core/commonStyle/app_constant.dart';
 import '../../../core/utils/import_list.dart';
+import '../../../core/utils/local_storage.dart';
 import '../view/signUpOtpView.dart';
 
 class AuthenticationController extends GetxController{
@@ -14,8 +17,6 @@ class AuthenticationController extends GetxController{
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
 
-
-
   var isLoading = false.obs;
 
   Future<void> createAccount({
@@ -25,7 +26,7 @@ class AuthenticationController extends GetxController{
     required String password,
 }) async {
     try {
-      isLoading.value = true;
+      AppLoader.show(message: 'Creating Account...');
       final response = await authService.createAccount(
         name: name,
         email: email,
@@ -33,6 +34,9 @@ class AuthenticationController extends GetxController{
       );
 
       if (response['success'] == true) {
+        var otpToken = response['data']['otpToken']['token'] as String;
+        LocalStorage.saveData(key: AppConstant.otpVerifyToken, data: otpToken);
+
         debugPrint("Account created successfully");
         showDialog(
           context: context,
@@ -41,7 +45,7 @@ class AuthenticationController extends GetxController{
             subTitle: "We have sent instruction to your email please check",
             onTap: () {
               Navigator.pop(context);
-              Get.to(()=>SignUpOtpVerifyView());
+              Get.to(()=>SignUpOtpVerifyView(email: email,));
             },
           ),
         );
@@ -53,12 +57,10 @@ class AuthenticationController extends GetxController{
       debugPrint("Account creation error $e");
       CustomToast.showToast(message: e.toString(), isError: true);
     }finally{
-      isLoading.value = false;
+      AppLoader.dismiss();
     }
   }
 
   /// sign in
-
-
 
 }

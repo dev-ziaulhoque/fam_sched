@@ -39,14 +39,14 @@ class LogInVerifyView extends StatelessWidget {
 
                 heightBox30,
 
-                CustomOtpField(
-                  length: 6,
-                  borderColor: AppColors.mainColor,
-                  borderWidth: 1,
-                  onChanged: (value) {
-                    print("OTP input: $value");
-                  },
-                ),
+                // CustomOtpField(
+                //   length: 6,
+                //   borderColor: AppColors.mainColor,
+                //   borderWidth: 1,
+                //   onChanged: (value) {
+                //     print("OTP input: $value");
+                //   },
+                // ),
 
                 heightBox20,
 
