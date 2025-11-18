@@ -1,95 +1,134 @@
-
-
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gt_tbb/core/utils/import_list.dart';
+import 'package:gt_tbb/view/AuthenticationView/controller/otp_controller.dart';
 import 'package:gt_tbb/view/AuthenticationView/view/signInView.dart';
 
-import '../../../core/utils/import_list.dart';
+import '../../../core/commonStyle/custom_toast.dart';
 
-class SignUpOtpVerifyView extends StatelessWidget {
-  const SignUpOtpVerifyView({super.key});
+class SignUpOtpVerifyView extends GetView<OtpController> {
+  final String email;
+  const SignUpOtpVerifyView({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
+    // Put controller once (or use Get.put in previous screen if you prefer)
+    final OtpController controller = Get.put(OtpController());
+
+    // Controller for the OTP text field
+    final TextEditingController otpController = TextEditingController();
+
+    final otpCon = List.generate(6, (index) => TextEditingController());
+
     return Scaffold(
       appBar: CustomAppBar(title: ''),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 14.w,vertical: 14.h),
+          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
           child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+            child: Obx(
+              ()=> Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  heightBox50,
 
-                heightBox50,
+                  CustomText(
+                    text: 'Verification Code',
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF121212),
+                  ),
 
-                CustomText(
-                  text: 'Verification Code',
-                  fontSize: 24.sp,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0XFF121212),
-                ),
+                  heightBox10,
 
-                heightBox10,
+                  CustomText(
+                    text: 'Please enter your code',
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFF4F4F4F),
+                  ),
 
-                CustomText(
-                  text: 'Please enter your code ',
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0XFF4F4F4F),
-                ),
+                  heightBox30,
 
-                heightBox30,
+                  // OTP Input Field
+                  CustomOtpWidget(
+                    controllers: otpCon,
+                    numberOfFields: 6,
+                    borderColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                  ),
 
-                CustomOtpField(
-                  length: 6,
-                  borderColor: AppColors.mainColor,
-                  borderWidth: 1,
-                  onChanged: (value) {
-                    print("OTP input: $value");
-                  },
-                ),
+                  heightBox30,
 
-                heightBox20,
+                  // Timer + Resend Row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      controller.remainingSeconds.value > 0?SizedBox():
+                      CustomText(
+                        text: "Didn't receive your OTP? ",
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFF4F4F4F),
+                      ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomText(
-                      text: 'Didn’t receive your otp?',
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0XFF4F4F4F),
-                    ),
+                      if (!controller.isResendEnabled.value) ...[
+                        CustomText(
+                          text: "Resend in ${controller.remainingSeconds.value}s",
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w500,
+                          color: const Color(0xFFA11C11),
+                        ),
+                      ] else ...[
+                        GestureDetector(
+                          onTap: controller.isLoading.value
+                              ? null
+                              : () async {
+                            await controller.resendOtp(email: email);
+                          },
+                          child: controller.isLoading.value
+                              ? const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          )
+                              : CustomText(
+                            text: 'Resend Code',
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                            color: const Color(0xFFA11C11),
+                            underline: false,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
 
-                    widthBox10,
+                  const Spacer(),
 
-                    CustomText(
-                      text: 'Resend Code',
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0XFFA11C11),
-                      underline: true,
-                    ),
-
-                  ],
-                ),
-
-
-                heightBox50,
-
-                CustomButtonWidget(
+                  // Verify Button
+                  CustomButtonWidget(
                     btnText: 'Verify',
                     btnTextSize: 16,
-                    onTap: (){
-                      print('object');
-                      Get.to(() => SignInView());
+                    onTap: () async {
+                      String otp = otpCon.map((controller) => controller.text).join();
+                      if (otp.length == 6) {
+                        await controller.verifyOtp(otp: otp);
+                      } else {
+                        CustomToast.showToast(
+                            message: "Please enter a valid 6-digit OTP",
+                            isError: true,
+                        );
+                      }
                     },
-                    iconWant: false
-                ),
+                    iconWant: false,
+                  ),
 
-
-
-              ],
+                  heightBox30,
+                ],
+              ),
             ),
           ),
         ),

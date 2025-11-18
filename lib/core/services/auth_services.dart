@@ -26,7 +26,38 @@ class AuthService {
     return response.data;
   }
 
-  // create account
+
+  /// otp verify
+  Future<Map<String, dynamic>> verifyOtp({
+    required String otp,
+  }) async {
+    final response = await _baseClient.post(
+      endpoint: EndPoint.VERIFY_OTP,
+      headers: {
+        'Content-Type': 'application/json',
+        'token': LocalStorage.getData(key: AppConstant.otpVerifyToken),
+      },
+      body: {
+        "otp": otp,
+      },
+    );
+    return response.data;
+  }
+
+  /// resend otp
+  Future<Map<String, dynamic>> resendOtp({
+    required String email,
+  }) async {
+    final response = await _baseClient.post(
+      endpoint: EndPoint.RESEND_OTP,
+      body: {
+        "email": email
+      },
+    );
+    return response.data;
+  }
+
+  /// create account
   Future<Map<String, dynamic>> createAccount({
     required String name,
     required String email,
