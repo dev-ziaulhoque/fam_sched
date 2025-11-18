@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
-import '../../../../commonWidget/custom_alert_dialog.dart';
+import 'package:gt_tbb/core/commonWidget/custom_text_widget.dart';
+import '../../../../core/commonWidget/custom_alert_dialog.dart';
 import 'calenderEventWidget.dart';
 
 class HomeWidget extends StatefulWidget {

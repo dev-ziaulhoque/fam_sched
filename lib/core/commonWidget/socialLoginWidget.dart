@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gt_tbb/commonStyle/app_colors.dart';
-import 'package:gt_tbb/commonStyle/app_images.dart';
+
+import '../commonStyle/app_colors.dart';
+import '../commonStyle/app_images.dart';
 
 class SocialWidget extends StatelessWidget {
   final VoidCallback? onTap;

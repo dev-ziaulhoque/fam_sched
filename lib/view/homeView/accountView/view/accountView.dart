@@ -1,24 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:showcaseview/showcaseview.dart';
-import 'package:gt_tbb/commonStyle/app_colors.dart';
-import 'package:gt_tbb/commonWidget/commonAppbar.dart';
-import 'package:gt_tbb/commonWidget/custom_size.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
-import 'package:gt_tbb/view/homeView/accountView/view/groupMemberView.dart';
+import 'package:gt_tbb/core/commonWidget/commonAppbar.dart';
+import 'package:gt_tbb/core/commonWidget/profileTileWidget.dart';
 import 'package:gt_tbb/view/homeView/accountView/view/privacyPolicyView.dart';
 import 'package:gt_tbb/view/homeView/accountView/view/subscriptionView.dart';
 import 'package:gt_tbb/view/homeView/accountView/view/termsConditionView.dart';
-import 'package:gt_tbb/view/homeView/accountView/widget/alertDialog.dart';
-import 'package:gt_tbb/view/homeView/accountView/widget/notificationWidget.dart';
-import '../../../../commonStyle/app_images.dart';
-import '../../../../commonWidget/profileTileWidget.dart';
+import 'package:showcaseview/showcaseview.dart';
+
+import '../../../../core/utils/import_list.dart';
+import '../widget/alertDialog.dart';
 import '../widget/alertPreferenceCard.dart';
 import '../widget/alertShowcaseWidget.dart';
-import 'addFamillyMemberView.dart';
+import '../widget/notificationWidget.dart';
 import 'changePasswordView.dart';
 import 'editProfileView.dart';
+import 'groupMemberView.dart';
 import 'notificationView.dart';
 
 class AccountScreen extends StatelessWidget {

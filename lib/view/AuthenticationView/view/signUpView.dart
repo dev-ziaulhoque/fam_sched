@@ -1,23 +1,16 @@
 
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:gt_tbb/commonStyle/app_colors.dart';
-import 'package:gt_tbb/commonWidget/custom_app_bar_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_button_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_text_filed.dart';
+import 'package:gt_tbb/core/commonStyle/custom_toast.dart';
+import 'package:gt_tbb/view/AuthenticationView/controller/authentication_controller.dart';
 import 'package:gt_tbb/view/AuthenticationView/view/signInView.dart';
 import 'package:gt_tbb/view/AuthenticationView/view/signUpOtpView.dart';
-import '../../../commonWidget/custom_size.dart';
-import '../../../commonWidget/custom_text_widget.dart';
-import '../widget/alertDiallogWidget.dart';
+import '../../../core/utils/import_list.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends GetView<AuthenticationController> {
   const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final AuthenticationController controller = Get.put(AuthenticationController());
     return Scaffold(
       appBar: CustomAppBar(title: ''),
       body: SafeArea(
@@ -28,7 +21,6 @@ class SignUpView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 CustomText(
                   text: 'Sign  Up',
                   fontSize: 24.sp,
@@ -45,20 +37,6 @@ class SignUpView extends StatelessWidget {
                   color: Color(0XFF4F4F4F),
                 ),
 
-                heightBox30,
-                CustomText(
-                  text: 'Email',
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0XFF4F4F4F),
-                ),
-                heightBox10,
-
-                CustomTextField(
-                    hintText: 'mehedi@gmail.com',
-                    showObscure: false
-                ),
-
                 heightBox20,
                 CustomText(
                   text: 'Name',
@@ -66,68 +44,132 @@ class SignUpView extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   color: Color(0XFF4F4F4F),
                 ),
+                heightBox5,
+                CustomTextField(
+                  hintText: 'Enter your name',
+                  showObscure: false,
+                  controller: controller.nameController,
+                ),
+
                 heightBox10,
 
+                CustomText(
+                  text: 'Email',
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0XFF4F4F4F),
+                ),
+                heightBox5,
                 CustomTextField(
-                    hintText: 'mehedi hasan',
-                    showObscure: false
+                  hintText: 'Enter your email',
+                  showObscure: false,
+                  controller: controller.emailController,
                 ),
 
 
-
-                heightBox20,
-
+                heightBox10,
                 CustomText(
                   text: 'Password',
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   color: Color(0XFF4F4F4F),
                 ),
-                heightBox10,
+                heightBox5,
                 CustomTextField(
                   hintText: "********",
                   showObscure: true,
+                  controller: controller.passwordController,
                 ),
 
-                heightBox20,
-
+                heightBox10,
                 CustomText(
                   text: 'Confirm Password',
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   color: Color(0XFF4F4F4F),
                 ),
-                heightBox10,
+                heightBox5,
                 CustomTextField(
                   hintText: "********",
                   showObscure: true,
+                  controller: controller.confirmPasswordController,
                 ),
-
-
-
-
-
-                heightBox30,
-
-                CustomButtonWidget(
-                    btnText: 'Sign Up',
-                    btnTextSize: 16,
-                    onTap: (){
-                      showDialog(
-                        context: context,
-                        builder: (context) => CustomCenterDialog(
-                          title: "Check Your Email",
-                          subTitle: "We have sent instruction to your email please check ",
-                          onTap: ()=> Get.to(SignUpOtpVerifyView()),
-                        ),
-                      );
-                    },
-                    iconWant: false
-                ),
-
-
 
                 heightBox20,
+            CustomButtonWidget(
+              btnText: 'Sign Up',
+              btnTextSize: 16,
+              onTap: () {
+                final name = controller.nameController.text.trim();
+                final email = controller.emailController.text.trim();
+                final password = controller.passwordController.text.trim();
+                final confirmPassword = controller.confirmPasswordController.text.trim();
+
+                // Name empty
+                if (name.isEmpty) {
+                  CustomToast.showToast(message: 'Please enter your name', isError: true);
+                  return;
+                }
+
+                // Email empty
+                if (email.isEmpty) {
+                  CustomToast.showToast(message: 'Please enter your email', isError: true);
+                  return;
+                }
+
+                // Email format check
+                final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                if (!emailRegex.hasMatch(email)) {
+                  CustomToast.showToast(message: 'Please enter a valid email', isError: true);
+                  return;
+                }
+
+                // Password empty
+                if (password.isEmpty) {
+                  CustomToast.showToast(message: 'Please enter your password', isError: true);
+                  return;
+                }
+
+                // Password min length
+                if (password.length < 6) {
+                  CustomToast.showToast(
+                      message: 'Password must be at least 6 characters',
+                      isError: true
+                  );
+                  return;
+                }
+
+                // Confirm password empty
+                if (confirmPassword.isEmpty) {
+                  CustomToast.showToast(
+                      message: 'Please enter your confirm password',
+                      isError: true
+                  );
+                  return;
+                }
+
+                // Password match
+                if (password != confirmPassword) {
+                  CustomToast.showToast(
+                      message: 'Password does not match',
+                      isError: true
+                  );
+                  return;
+                }
+
+                // If all validations pass
+                controller.createAccount(
+                  context: context,
+                  name: name,
+                  email: email,
+                  password: password,
+                );
+              },
+              iconWant: false,
+            ),
+
+
+            heightBox20,
 
                 Center(
                   child: Row(
@@ -152,8 +194,6 @@ class SignUpView extends StatelessWidget {
                     ],
                   ),
                 ),
-
-
 
               ],
             ),

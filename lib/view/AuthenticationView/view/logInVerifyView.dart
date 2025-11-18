@@ -1,17 +1,6 @@
 
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:gt_tbb/commonWidget/custom_app_bar_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_button_widget.dart';
-import 'package:gt_tbb/view/AuthenticationView/view/newPasswordView.dart';
-import 'package:gt_tbb/view/AuthenticationView/view/signInView.dart';
-import '../../../commonStyle/app_colors.dart';
-import '../../../commonWidget/custom_size.dart';
-import '../../../commonWidget/custom_text_widget.dart';
-import '../widget/customOtpWidget.dart';
+import '../../../core/utils/import_list.dart';
+import 'newPasswordView.dart';
 
 class LogInVerifyView extends StatelessWidget {
   const LogInVerifyView({super.key});

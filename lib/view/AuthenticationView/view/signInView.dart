@@ -1,16 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:gt_tbb/commonStyle/app_colors.dart';
-import 'package:gt_tbb/commonWidget/custom_button_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_text_filed.dart';
-import 'package:gt_tbb/commonWidget/divider_with_text.dart';
 import 'package:gt_tbb/view/AuthenticationView/view/signUpView.dart';
-import 'package:gt_tbb/view/homeView/homeView.dart';
-import '../../../commonWidget/customCheckBox_widget.dart';
-import '../../../commonWidget/custom_size.dart';
-import '../../../commonWidget/custom_text_widget.dart';
-import '../../../commonWidget/socialLoginWidget.dart';
+import '../../../core/commonWidget/divider_with_text.dart';
+import '../../../core/utils/import_list.dart';
+import '../../homeView/homeView.dart';
 import 'logInForgotView.dart';
 
 class SignInView extends StatelessWidget {
@@ -20,7 +11,7 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 14.w,vertical: 14.h),
           child: Center(
             child: Column(
@@ -55,7 +46,7 @@ class SignInView extends StatelessWidget {
                 heightBox10,
 
                 CustomTextField(
-                    hintText: 'mehedi@gmail.com',
+                    hintText: 'Enter Email',
                     showObscure: false
                 ),
 
@@ -99,7 +90,7 @@ class SignInView extends StatelessWidget {
                     ),
 
                     GestureDetector(
-                      onTap: ()=> Get.to(LogInForgotView()),
+                      onTap: ()=> Get.to(()=>LogInForgotView()),
                       child: CustomText(
                         text: 'Forgot Password?',
                         fontSize: 14.sp,
@@ -119,7 +110,7 @@ class SignInView extends StatelessWidget {
                     btnTextSize: 16,
                     onTap: (){
                      //
-                      Get.offAll(HomeView());
+                      Get.offAll(()=>HomeView());
                     },
                     iconWant: false
                 ),
@@ -149,7 +140,7 @@ class SignInView extends StatelessWidget {
                       ),
                       widthBox10,
                       GestureDetector(
-                        onTap: ()=> Get.to(SignUpView()),
+                        onTap: ()=> Get.to(()=>SignUpView()),
                         child: CustomText(
                           text: 'Sign Up',
                           fontSize: 17.sp,
@@ -160,9 +151,6 @@ class SignInView extends StatelessWidget {
                     ],
                   ),
                 ),
-
-
-
               ],
             ),
           ),

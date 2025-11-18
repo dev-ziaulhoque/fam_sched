@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:showcaseview/showcaseview.dart';
 
-import '../../../../commonStyle/app_colors.dart';
-import '../../../../commonWidget/custom_size.dart';
-import '../../../../commonWidget/custom_text_widget.dart';
-import '../../../../commonWidget/toggleCheckBox.dart';
+import '../../../../core/commonStyle/app_colors.dart';
+ 
+import '../../../../core/commonWidget/custom_size.dart';
+import '../../../../core/commonWidget/custom_text_widget.dart';
+import '../../../../core/commonWidget/toggleCheckBox.dart';
 
 class NotificationWidget extends StatefulWidget {
   final String imagePath;

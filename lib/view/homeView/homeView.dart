@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gt_tbb/commonStyle/app_colors.dart';
-import 'package:gt_tbb/commonStyle/app_images.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
+import 'package:gt_tbb/core/commonStyle/app_colors.dart';
+import 'package:gt_tbb/core/commonStyle/app_images.dart';
+import 'package:gt_tbb/core/commonWidget/custom_text_widget.dart';
 import 'accountView/view/accountView.dart';
 import 'addEventView/view/addEventView.dart';
 import 'calenderView/view/calenderView.dart';

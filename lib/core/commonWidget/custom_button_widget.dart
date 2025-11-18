@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
+
+import 'custom_text_widget.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final String btnText;

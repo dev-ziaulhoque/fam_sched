@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gt_tbb/commonWidget/custom_size.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
-import '../../../../commonStyle/app_colors.dart';
+
+import 'package:gt_tbb/core/commonWidget/custom_text_widget.dart';
+import '../../../../core/commonStyle/app_colors.dart';
+import '../../../../core/commonWidget/custom_size.dart';
 
 class ProfileAlertDialog extends StatelessWidget {
   final String subTitle;

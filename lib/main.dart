@@ -1,12 +1,25 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart'; // ✅ Add for Lato font
 import 'package:gt_tbb/view/splashView/splashView.dart';
+
+import 'core/network/base_client.dart';
+import 'core/network/end_point.dart';
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +29,18 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  /// BaseClient initialize
+  HttpOverrides.global = MyHttpOverrides();
+  BaseClient().init(
+    baseUrl: EndPoint.BASE_URL, // Your API URL
+    headers: {
+      'Content-Type': 'application/json',
+      // 'Accept': 'application/json',
+    },
+    connectTimeout: Duration(seconds: 60),
+    receiveTimeout: Duration(seconds: 60),
+  );
 
   // Run the app
   runApp(MyApp());

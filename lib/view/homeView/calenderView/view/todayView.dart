@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:gt_tbb/commonWidget/custom_app_bar_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_size.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
+import 'package:gt_tbb/core/commonWidget/custom_app_bar_widget.dart';
+
+import 'package:gt_tbb/core/commonWidget/custom_text_widget.dart';
 import 'package:gt_tbb/view/homeView/calenderView/view/tomorrowView.dart';
 import 'package:gt_tbb/view/homeView/calenderView/view/upcommingView.dart';
 import 'package:gt_tbb/view/homeView/calenderView/widget/pendingWidget.dart';
 import 'package:gt_tbb/view/homeView/calenderView/widget/upcomingWidget.dart';
-import '../../../../commonStyle/app_colors.dart';
-import '../../../../commonStyle/app_images.dart';
+import '../../../../core/commonStyle/app_colors.dart';
+import '../../../../core/commonStyle/app_images.dart';
+import '../../../../core/commonWidget/custom_size.dart';
 
 class TodayScreen extends StatelessWidget {
   const TodayScreen({super.key});

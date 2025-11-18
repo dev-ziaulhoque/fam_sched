@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:gt_tbb/commonStyle/app_colors.dart';
+
+import '../commonStyle/app_colors.dart';
 
 class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -17,11 +18,11 @@ class CommonAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
 
   /// For adding right-side asset icon inside a circular container
-  final String? rightIcon; // asset path
+  final String? rightIcon;
   final VoidCallback? onRightIconTap;
-  final double iconSize; // size for both leading & right
-  final Color iconBackgroundColor; // leading icon background
-  final Color iconBorderColor; // border color
+  final double iconSize;
+  final Color iconBackgroundColor;
+  final Color iconBorderColor;
 
   const CommonAppbar({
     Key? key,

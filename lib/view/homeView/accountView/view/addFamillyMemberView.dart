@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gt_tbb/commonWidget/custom_app_bar_widget.dart';
+import 'package:gt_tbb/core/commonWidget/custom_app_bar_widget.dart';
 
-import '../../../../commonStyle/app_colors.dart';
-import '../../../../commonWidget/custom_button_widget.dart';
-import '../../../../commonWidget/custom_size.dart';
-import '../../../../commonWidget/custom_text_filed.dart';
-import '../../../../commonWidget/custom_text_widget.dart';
+import '../../../../core/commonStyle/app_colors.dart';
+import '../../../../core/commonWidget/custom_button_widget.dart';
+import '../../../../core/commonWidget/custom_size.dart';
+import '../../../../core/commonWidget/custom_text_filed.dart';
+import '../../../../core/commonWidget/custom_text_widget.dart';
 
 class AddFamilyMemberView extends StatelessWidget {
   const AddFamilyMemberView({super.key});

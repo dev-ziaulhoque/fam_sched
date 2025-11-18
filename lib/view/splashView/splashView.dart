@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gt_tbb/commonStyle/app_images.dart';
+import 'package:gt_tbb/core/commonStyle/app_images.dart';
 import 'package:gt_tbb/view/onBoardingView/onBoardingView.dart';
 
 class SplashView extends StatefulWidget {

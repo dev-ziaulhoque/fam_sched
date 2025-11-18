@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:gt_tbb/commonStyle/app_colors.dart';
-import 'package:gt_tbb/commonStyle/app_images.dart';
-import 'package:gt_tbb/commonWidget/custom_button_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_size.dart';
+import 'package:gt_tbb/core/commonStyle/app_colors.dart';
+import 'package:gt_tbb/core/commonStyle/app_images.dart';
+import 'package:gt_tbb/core/commonWidget/custom_button_widget.dart';
+import 'package:gt_tbb/core/commonWidget/custom_text_widget.dart';
+
+import '../../core/commonWidget/custom_size.dart';
 import '../AuthenticationView/view/signInView.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -156,8 +157,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 },
               ),
             ),
-
-
             heightBox30,
           ],
         ),

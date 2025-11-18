@@ -1,12 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:gt_tbb/commonStyle/app_images.dart';
-import 'package:gt_tbb/commonWidget/custom_button_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
-import 'package:gt_tbb/view/AuthenticationView/view/logInVerifyView.dart';
-import '../../../commonStyle/app_colors.dart';
+
+import '../../../core/utils/import_list.dart';
 
 class CustomCenterDialog extends StatelessWidget {
   final String title;

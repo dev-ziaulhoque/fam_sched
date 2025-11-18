@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gt_tbb/commonStyle/app_colors.dart';
-import 'package:gt_tbb/commonWidget/custom_button_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_text_widget.dart';
+import 'package:gt_tbb/core/commonStyle/app_colors.dart';
+import 'package:gt_tbb/core/commonWidget/custom_button_widget.dart';
+import 'package:gt_tbb/core/commonWidget/custom_text_widget.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 class RemainderAlertWithShowcase extends StatefulWidget {

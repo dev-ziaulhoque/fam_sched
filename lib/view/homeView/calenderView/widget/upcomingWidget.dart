@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../commonStyle/app_colors.dart';
-import '../../../../commonStyle/app_images.dart';
-import '../../../../commonWidget/custom_size.dart';
-import '../../../../commonWidget/custom_text_widget.dart';
+import '../../../../core/commonStyle/app_colors.dart';
+import '../../../../core/commonStyle/app_images.dart';
+ 
+import '../../../../core/commonWidget/custom_size.dart';
+import '../../../../core/commonWidget/custom_text_widget.dart';
 
 class UpComingWidget extends StatelessWidget {
 

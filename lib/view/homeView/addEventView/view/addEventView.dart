@@ -2,17 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:gt_tbb/commonStyle/app_images.dart';
-import 'package:gt_tbb/commonWidget/commonAppbar.dart';
-import 'package:gt_tbb/commonWidget/custom_button_widget.dart';
-import 'package:gt_tbb/commonWidget/custom_text_filed.dart';
+import 'package:gt_tbb/core/commonWidget/commonAppbar.dart';
+import 'package:gt_tbb/core/commonWidget/custom_button_widget.dart';
 import 'package:gt_tbb/view/homeView/accountView/view/notificationView.dart';
 import 'package:intl/intl.dart';
-import '../../../../commonStyle/app_colors.dart';
-import '../../../../commonWidget/customCheckBox_widget.dart';
-import '../../../../commonWidget/customDropDownWidget.dart';
-import '../../../../commonWidget/custom_size.dart';
-import '../../../../commonWidget/custom_text_widget.dart';
+import '../../../../core/commonStyle/app_colors.dart';
+ 
+import '../../../../core/commonStyle/app_images.dart';
+import '../../../../core/commonWidget/customCheckBox_widget.dart';
+import '../../../../core/commonWidget/custom_size.dart';
+import '../../../../core/commonWidget/custom_text_widget.dart';
 import '../widget/customDropdown.dart';
 import '../widget/customEventTextField.dart';
 import '../widget/openAssignSheetWidget.dart';
@@ -218,6 +217,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppbar(
+        onTap: () => Navigator.of(context).pop(),
         title: 'Add Event',
         rightIcon: AppImages.notification,
         onRightIconTap: () => Get.to(() => const NotificationView()),
